@@ -1,5 +1,5 @@
 import React, { useCallback} from 'react';
-import {useChat} from './useChat';
+import {useChat} from './useChatReducer';
 import Controls from '../Controls';
 import ChatList from './ChatList';
 import './style.scss';

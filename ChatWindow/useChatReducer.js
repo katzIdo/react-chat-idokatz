@@ -2,12 +2,21 @@ import {useState, useEffect, useCallback, useReducer} from 'react';
 
 const TYPER_TIMEOUT = 8000;
 
+const removeTyper = (typers, typer) => {
+    const index = typers.indexOf(typer);
+      if (index !== -1) {
+        typers.splice(index,1);
+      }
+      return [...typers]
+}
 const reducer = (chat, {type, payload}) => {
   switch(type){
     case 'AddMessage':
+    const typers = removeTyper(chat.typers, payload.user);
     return {
       ...chat,
-      messages: [...chat.messages, payload]
+      messages: [...chat.messages, payload],
+      typers
     }
     case 'AddTyper':
     return {
@@ -15,11 +24,8 @@ const reducer = (chat, {type, payload}) => {
       typers: [...chat.typers, payload]
     }
     case 'RemoveTyper':
-      const typers = chat.typers;
-      const index = typers.indexOf(payload);
-      if (index !== -1) {
-        typers.splice(index,1);
-      }
+      const typers = removeTyper(chat.typers, payload);
+      
       return {
         ...chat,
         typers
@@ -39,7 +45,6 @@ export const useChat = () => {
 
   useEffect(()=>{
     window.Chat.onMessage((msg)=>{
-        dispatch({type: 'RemoveTyper', payload: msg.user});
         dispatch({type: 'AddMessage', payload: msg});
     });
 
