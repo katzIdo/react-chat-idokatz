@@ -1,3 +1,4 @@
 # react-chat-idokatz
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-chat-idokatz)
+1. npm i
+2. npm run start
