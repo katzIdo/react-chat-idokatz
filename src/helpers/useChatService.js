@@ -20,7 +20,7 @@ export const useChatService = () => {
             newUser.splice(index, 1);
             setTypers(newUser)
         }
-    },[typers]);
+    }, [typers, timers]);
 
     const sendMsg = useCallback((msg) => {
         window.Chat.sendMessage(msg);
@@ -36,14 +36,23 @@ export const useChatService = () => {
                 clearTyper(user);
             }, TYPER_TIMER);
         });
-    }, [typers]);
+    }, [typers, timers, clearTyper]);
 
     useEffect(() => {
         window.Chat.onMessage((msg) => {
             clearTyper(msg.user);
             setMessages([...messages, msg]);
         });
-    }, [messages, typers]);
+    }, [messages, typers, clearTyper]);
+
+    useEffect(() => {
+        const raw = localStorage.getItem('msgHistory');
+        raw && setMessages(JSON.parse(raw));
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('msgHistory', JSON.stringify(messages));
+    }, [messages]);
 
     return {
         sendMsg,

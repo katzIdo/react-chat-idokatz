@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import ChatFooter from './components/ChatFooter';
 import ChatBody from './components/ChatBody';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const ENTER_KEY_CODE = 13;
 
@@ -41,7 +41,7 @@ const ChatFooter = ({ sendMessage }) => {
 };
 
 ChatFooter.propTypes = {
-  sendMessage: propTypes.func
+  sendMessage: PropTypes.func.isRequired
 }
 
 export default ChatFooter;
