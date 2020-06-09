@@ -40,6 +40,10 @@ const MessageModal = styled.div`
     margin: 1rem 1rem 0 1rem;
 `
 
+const Line = styled.div`
+  line-height:1.5rem;
+  font-size:1rem;
+`
 const ChatMessage = ({ id, content, getFullContent, timestamp, user, lastUser, onHover }) => {
     const [isHover, setIsHover] = useState(false);
     const [coordinates, setCoordinates] = useState({ top: 0, left: 0 })
@@ -62,12 +66,18 @@ const ChatMessage = ({ id, content, getFullContent, timestamp, user, lastUser, o
         setIsHover(status);
     }
 
+    const fullText = () => {
+        const fullText = getFullContent({ key: id });
+        const lines = fullText.split('<br>');
+        return lines ? lines.map((text, i) => <Line key={i}>{text}</Line>) : fullText;
+    }
+
     return (
         <>
             <Modal show={isHover} onHover={handleHover} coordinates={coordinates}>
                 <MessageModal>
                     <MessageHeader>{user}</MessageHeader>
-                    <MessageContent>{getFullContent({ key: id })}</MessageContent>
+                    <MessageContent>{fullText()}</MessageContent>
                 </MessageModal>
             </Modal>
             <MessageWrapper

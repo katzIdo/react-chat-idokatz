@@ -41,7 +41,7 @@ const ChatBody = ({ messageList, typersList }) => {
                 {messageList.map((msg) => {
                     if (lastUser === msg.user) {
                         fullContentKeys.push(msg.id);
-                        fullContent = `${fullContent} \
+                        fullContent = `${fullContent} <br>
                          ${msg.content}`
                     } else {
                         fullContentKeys = [msg.id];
