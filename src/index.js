@@ -1,18 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
-import styled, { ThemeProvider } from 'styled-components';
-import StyleReset from './styles/reset';
-import Theme from './styles/theme';
-
-import ChatWindow from './components/ChatWindow/ChatWindow';
-
-const App = () => {
-  return <ThemeProvider theme={Theme}>
-    <StyleReset />
-    <ChatWindow />
-  </ThemeProvider>
-}
-
+import App from './components/App/App';
 
 render(<App />, document.getElementById('root'));

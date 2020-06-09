@@ -11,6 +11,7 @@ const Theme = {
         secondary: '#717060',
         light : '#f2eecb',
         dark: '#9a9882',
+        black: '#000',
     }
 }
 

@@ -18,7 +18,7 @@ const ModalContainer = styled.div`
 
 const ModalContent = styled.div`
     position:absolute;
-    top: ${props => props.top};
+    top: ${props => props.top <= 40 ? props.top + 40 : props.top};
     left: ${props => props.left};
     margin-left: 1rem;
     margin-right: 1rem;

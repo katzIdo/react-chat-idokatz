@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 
 const TYPER_TIMER = 4000;
 
-export const useChatService = () => {
+export const useChatService = ({cacheStatus}) => {
     if (!window.Chat) {
         throw Error('chat not avilable');
 
@@ -51,8 +51,8 @@ export const useChatService = () => {
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('msgHistory', JSON.stringify(messages));
-    }, [messages]);
+        cacheStatus && localStorage.setItem('msgHistory', JSON.stringify(messages));
+    }, [messages, cacheStatus]);
 
     return {
         sendMsg,
